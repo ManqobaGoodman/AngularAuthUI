@@ -11,7 +11,9 @@ import { DashbardComponent } from './components/dashbard/dashbard.component';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './intercepters/token.interceptor';
 import { FormsModule } from '@angular/forms';
-import { ResetComponent } from './components/reset/reset.component'
+import { ResetComponent } from './components/reset/reset.component';
+import { UsersComponent } from './components/users/users.component'
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { ResetComponent } from './components/reset/reset.component'
     LoginComponent,
     SignupComponent,
     DashbardComponent,
-    ResetComponent
+    ResetComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { ResetComponent } from './components/reset/reset.component'
     ReactiveFormsModule,
     HttpClientModule,
     NgToastModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
