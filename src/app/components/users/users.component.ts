@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-users',
@@ -16,13 +17,10 @@ export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: any; // For pagination
+  @ViewChild(MatSort, {static: false}) sort: any; // For Sort
   constructor(private authService: AuthService, private userStoreService: UserStoreService) { }
-
   ngOnInit(): void {
-
-    
-
     this.userStoreService.getFullNameFromStore()
     .subscribe(val =>{
       let fullNameToken = this.authService.getFullNameFromTokene();
@@ -30,18 +28,25 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    
+
+    this.dataSource.paginator = this.paginator; // For pagination
+   this.dataSource.sort = this.sort;
+  }
+
   logout(){
     this.authService.signout();
   }
-
+}
   export interface PeriodicElement {
-    name: string;
-    position: number;
-    weight: number;
-    symbol: string;
+    Firstname: string;
+    Lastname: number;
+    Username: number;
+    Email: string;
   }
 
-  const ELEMENT_DATA: PeriodicElement[] = [
+  const ELEMENT_DATA: any[] = [
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
     {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
     {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
@@ -63,5 +68,3 @@ export class UsersComponent implements OnInit {
     {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
     {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
   ];
-
-}

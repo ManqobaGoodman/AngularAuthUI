@@ -52,12 +52,18 @@ export class LoginComponent implements OnInit {
             const tokenPlayload = this.auth.decodedToken();
             this.userStoreService.setFullNameFromStore(tokenPlayload.unique_name);
             this.userStoreService.setRoleFromStore(tokenPlayload.role);
-            this.toast.success({ detail: 'Succes', summary: res.message, duration: 3000 });
+            this.toast.success({
+              detail: 'Succes', summary: res.message, duration: 3000,
+              type: 'success'
+            });
             this.router.navigate(['dashbard']);
           },
           error: (err) => {
             //alert(err?.error.message);
-            this.toast.error({ detail: 'Error', summary: err?.error.message, duration: 3000 });
+            this.toast.error({
+              detail: 'Error', summary: err?.error.message, duration: 3000,
+              type: 'error'
+            });
           }
         })
     } else {
@@ -81,13 +87,16 @@ export class LoginComponent implements OnInit {
       this.resetPasswordService.sendEmailPasswordLink(this.resetPasswordEmail)
         .subscribe({
           next: (res) => {
-            this.toast.success({ detail: 'Success', summary: 'Email successful sent', duration: 3000 });
+            this.toast.success({ detail: 'Success', summary: 'Email successful sent', duration: 3000, type: 'success'});
             this.resetPasswordEmail = "";
             const buttonRef = document.getElementById("closeBtn");
             buttonRef?.click();
           },
           error: (err) => {
-            this.toast.error({ detail: 'Error', summary: 'Something went wrong!', duration: 5000 });
+            this.toast.error({
+              detail: 'Error', summary: 'Something went wrong!', duration: 5000,
+              type: 'error'
+            });
           }
         })
     }

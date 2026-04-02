@@ -15,7 +15,10 @@ export class AuthGuard  {
     if(this.auth.isLoggedIn()){
       return true;
     }else{
-      this.toster.error({detail:'Error', summary:'Please login first'})
+      this.toster.error({
+        detail: 'Error', summary: 'Please login first',
+        type: 'error'
+      })
       this.router.navigate(['login']);
       return false;
     }

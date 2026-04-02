@@ -1,5 +1,28 @@
 # AngularAuthUI
 
+📌 Overview
+
+This project is a frontend application built with Angular, implementing JWT (JSON Web Token) authentication to securely interact with a backend API.
+
+It allows users to register, log in, store tokens, and access protected routes.
+
+🚀 Features
+User Registration UI
+Login functionality
+JWT token storage (LocalStorage / SessionStorage)
+HTTP Interceptor for attaching tokens to requests
+Route Guards for protected pages
+Logout functionality
+Responsive UI
+🛠️ Technologies Used
+Angular
+TypeScript
+RxJS
+Angular Router
+HTTP Client Module
+Bootstrap / CSS (optional)
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
 ## Development server

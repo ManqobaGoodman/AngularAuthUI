@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { ResetComponent } from './components/reset/reset.component';
 import { UsersComponent } from './components/users/users.component'
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MatTableModule } from '@angular/material/table';
     HttpClientModule,
     NgToastModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -41,13 +41,19 @@ export class SignupComponent implements OnInit {
       .subscribe({
         next: (res) => {
          // alert(res.message)
-         this.toast.success({detail:'Succes',summary:res.message,duration:3000});
+         this.toast.success({
+           detail: 'Succes', summary: res.message, duration: 3000,
+           type: 'success'
+         });
           this.signupForm.reset();
           this.router.navigate(['login']);
         },
 
         error: (err) => {
-          this.toast.error({detail:'Error',summary:err?.error.message,duration:3000})
+          this.toast.error({
+            detail: 'Error', summary: err?.error.message, duration: 3000,
+            type: 'error'
+          })
         }
       })
     }else{
