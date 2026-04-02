@@ -49,11 +49,17 @@ export class ResetComponent implements OnInit {
       this.resetService.resetPassword(this.resetPasswordObj)
       .subscribe({
         next:(res)=>{
-          this.toast.success({detail:"Success", summary: res.message, duration: 3000});
+          this.toast.success({
+            detail: "Success", summary: res.message, duration: 3000,
+            type: 'success'
+          });
           this.router.navigate(['/'])
         },
         error: (err) =>{
-          this.toast.error({detail:"Errorer", summary: err?.error.message, duration: 5000});
+          this.toast.error({
+            detail: "Errorer", summary: err?.error.message, duration: 5000,
+            type: 'error'
+          });
         }
       })
     }else{
